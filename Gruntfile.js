@@ -1,6 +1,11 @@
 module.exports = function(grunt) {
 
-	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks); // 加载所有的任务
+
+	/*
+	 * 实时刷新参考文档: http://unmi.cc/grunt-contrib-connect-build-livereload-dev-env/
+	 * chrome插件地址: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+	 */
 
 	// Project configuration
 	grunt.initConfig({
@@ -36,9 +41,6 @@ module.exports = function(grunt) {
             }
 		}
 	});
-
-	//加载插件
-    grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// 自定义任务
 	 grunt.registerTask('serve', [
