@@ -23,6 +23,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "load-grunt-tasks": "~0.3.0",
     "grunt-contrib-watch": "latest",
-    "connect-livereload": "latest"
+    "connect-livereload": "latest",
+    "grunt-contrib-jshint": "latest"
   }
 }

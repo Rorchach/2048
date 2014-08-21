@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
 		// 通过watch任务，来监听文件是否有更改
 		watch: {
 			livereload: {
@@ -38,7 +39,15 @@ module.exports = function(grunt) {
                     '*.css',
                     '*.js'
                 ]
-            }
+            },
+            files: ['main.js', 'support.js', 'showanimation.js'],
+            tasks: ['jshint']
+		},
+
+		jshint: {
+			all: {
+				src: ['main.js', 'support.js', 'showanimation.js']
+			}
 		}
 	});
 

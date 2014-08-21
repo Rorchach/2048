@@ -1,33 +1,37 @@
 
-var board = new Array();
+var board = [];
 var score = 0;
 
 $(document).ready(function(){
 	newgame();
 });
 
-$(document).ready(function(event){
+$(document).keydown(function(event){
 	switch(event.keyCode) {
 		case 38: // up
 			if( moveUp() ) {
+			console.log('up');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
 			break;
 		case 40: // down
 			if( moveDown() ) {
+			console.log('down');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
 			break;
 		case 37: //left
 			if( moveLeft() ) {
+			console.log('left');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
 			break;
 		case 39: //right
 			if( moveRight() ) {
+			console.log('right');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
@@ -49,8 +53,9 @@ function newgame() {
 
 function init() {
 	// 初始化grid-cell
-	for (var i = 0; i < 4; i++) {
-		for(var j=0; j < 4; j++) {
+	var i, j;
+	for (i = 0; i < 4; i++) {
+		for(j=0; j < 4; j++) {
 			var gridCell = $('#grid-cell-' + i + '-' + j);
 			gridCell.css('top', getPosTop(i, j));
 			gridCell.css('left', getPosLeft(i, j));
@@ -58,9 +63,9 @@ function init() {
 	}
 
 	// 初始化board
-	for(var i = 0 ; i < 4 ; i++){
-        board[i] = new Array();
-        for( var j = 0 ; j < 4 ; j++){
+	for(i = 0 ; i < 4 ; i++){
+        board[i] = [];
+        for(j = 0 ; j < 4 ; j++){
             board[i][j] = 0;
         }
     }
@@ -77,7 +82,7 @@ function generateOneNumber() {
 	var randx = ~~(Math.random() * 4); // ~~ 等于 Math.floor()
 	var randy = ~~(Math.random() * 4);
 	while(true) {
-		if( board[randx][randy] == 0 ) break;
+		if( board[randx][randy] === 0 ) break;
 		randx = ~~(Math.random() * 4);
 		randy = ~~(Math.random() * 4);
 	}
@@ -98,7 +103,7 @@ function updateBoardView() {
 			$('#grid-container').append('<div class="number-cell" id="number-cell-' + i + '-' + j + '"></div>');
 			var theNumbercell = $('#number-cell-' + i + '-' + j);
 
-			if( board[i][j] == 0 ) {
+			if( board[i][j] === 0 ) {
 				theNumbercell.css('width', '0px');
 				theNumbercell.css('width', '0px');
 				theNumbercell.css('top', getPosTop(i, j) + 50);
@@ -115,8 +120,36 @@ function updateBoardView() {
 	}
 }
 
+function moveDown() {
 
+	if(canMoveDown(board)) {
+		return true;
+	}
 
+}
+
+function moveUp() {
+
+	if(canMoveUp(board)) {
+		return true;
+	}
+
+}
+
+function moveLeft() {
+
+	if(canMoveLeft()) {
+		return true;
+	}
+
+}
+
+function moveRight() {
+
+	if(canMoveRight()) {
+		return true;
+	}
+}
 
 
 
