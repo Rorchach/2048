@@ -120,6 +120,15 @@ function updateBoardView() {
 	}
 }
 
+function isgameover() {
+	if(canMoveUp(board) || canMoveDown(board) || canMoveLeft(board) || canMoveRight(board)) return false;
+	return true;
+}
+
+function gameover() {
+	$('#gameover').show();
+}
+
 function moveDown() {
 
 	if(canMoveDown(board)) {
@@ -130,15 +139,37 @@ function moveDown() {
 
 function moveUp() {
 
-	if(canMoveUp(board)) {
-		return true;
+	if(!canMoveUp(board)) {
+		return false;
 	}
 
+	// move up
+	for(var i=1; i < 4; i++) {
+		for(var j=0; j < 4; j++) {
+			if(board[i][j] !== 0) {
+				for(var k=0; k < i; k++) {
+					if(board[j][k] === 0 && noBlockVertical(j, k, i, board)) {
+						// move
+						showMoveAnimation(i, j, k, j);
+						board[k][j] = board[i][j];
+						board[i][j] = 0;
+					} else if (board[i][j] == board[k][j] && noBlockVertical(j, k, i, board)) {
+						// move
+						showMoveAnimation(i, j, k, j);
+						board[k][j] += board[i][j];
+						board[i][j] = 0;
+					}
+				}
+			}
+		}
+	}
+
+	return true;
 }
 
 function moveLeft() {
 
-	if(canMoveLeft()) {
+	if(canMoveLeft(board)) {
 		return true;
 	}
 
@@ -146,7 +177,7 @@ function moveLeft() {
 
 function moveRight() {
 
-	if(canMoveRight()) {
+	if(canMoveRight(board)) {
 		return true;
 	}
 }

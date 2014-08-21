@@ -60,7 +60,7 @@ function canMoveDown(board) {
 	for(var i=0; i < 3; i++) {
 		for(var j=0; j < 4; j++) {
 			if(!board[i][j]) {
-				if(board[i+1][j] === 0 || board[i][j] === board[i-1][j]) {
+				if(board[i+1][j] === 0 || board[i][j] === board[i+1][j]) {
 					return true;
 				}
 			}
@@ -93,4 +93,20 @@ function canMoveRight(board) {
 		}
 	}
 	return false;
+}
+
+function noBlockVertical(col, row1, row2, board) {
+	for(var i=row1 + 1; i < row2; i++) {
+		if(board[i][col] !== 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function noBlockHorizontal(row, col1, col2, board) {
+	for(var i=col1 + 1; i < col2; i++) {
+		return false;
+	}
+	return true;
 }
