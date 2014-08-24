@@ -10,28 +10,24 @@ $(document).keydown(function(event){
 	switch(event.keyCode) {
 		case 38: // up
 			if( moveUp() ) {
-			console.log('up');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
 			break;
 		case 40: // down
 			if( moveDown() ) {
-			console.log('down');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
 			break;
 		case 37: //left
 			if( moveLeft() ) {
-			console.log('left');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
 			break;
 		case 39: //right
 			if( moveRight() ) {
-			console.log('right');
 				generateOneNumber();
 				if( isgameover() ) gameover();
 			}
@@ -81,6 +77,7 @@ function generateOneNumber() {
 
 	var randx = ~~(Math.random() * 4); // ~~ 等于 Math.floor()
 	var randy = ~~(Math.random() * 4);
+	
 	while(true) {
 		if( board[randx][randy] === 0 ) break;
 		randx = ~~(Math.random() * 4);
@@ -91,8 +88,6 @@ function generateOneNumber() {
 	board[randx][randy] = randNumber;
 	showNumberWithAnimation(randx, randy, randNumber);
  		
- 	console.log(randNumber);
-
 	return true;
 }
 
@@ -143,6 +138,8 @@ function moveUp() {
 		return false;
 	}
 
+	console.log(board);
+
 	// move up
 	for(var i=1; i < 4; i++) {
 		for(var j=0; j < 4; j++) {
@@ -153,7 +150,7 @@ function moveUp() {
 						showMoveAnimation(i, j, k, j);
 						board[k][j] = board[i][j];
 						board[i][j] = 0;
-					} else if (board[i][j] == board[k][j] && noBlockVertical(j, k, i, board)) {
+					} else if (board[i][j] === board[k][j] && noBlockVertical(j, k, i, board)) {
 						// move
 						showMoveAnimation(i, j, k, j);
 						board[k][j] += board[i][j];
