@@ -1,4 +1,4 @@
-2048 for Web
+2048 for Web 1.0
 
 thanks @JerryC8080
 
