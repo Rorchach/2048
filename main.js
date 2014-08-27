@@ -100,7 +100,7 @@ function updateBoardView() {
 
 			if( board[i][j] === 0 ) {
 				theNumbercell.css('width', '0px');
-				theNumbercell.css('width', '0px');
+				theNumbercell.css('height', '0px');
 				theNumbercell.css('top', getPosTop(i, j) + 50);
 				theNumbercell.css('left', getPosLeft(i, j) + 50);
 			} else {
