@@ -39,6 +39,7 @@
     "mongodb": "*",
     "monk": "*",
     "connect-mongo": "*",
-    "connect-flash": "*"
+    "connect-flash": "*",
+    "sqlite3": "2.2.3"
   }
 }
